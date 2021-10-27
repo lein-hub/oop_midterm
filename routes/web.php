@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SubjectController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -38,4 +39,12 @@ Route::group(['prefix' => 'subject', 'middleware' => ['auth:sanctum', 'verified'
     Route::post('/', [SubjectController::class, 'create'])->name('subject.create');
     Route::delete('/{subjectId}', [SubjectController::class, 'destroy'])->name('subject.destroy');
     Route::patch('/{subjectId}', [SubjectController::class, 'update'])->name('subject.update');
+});
+
+Route::group(['prefix' => 'comment', 'middleware' => ['auth:sanctum', 'verified']], function () {
+    Route::get('/{subjectId}', [CommentController::class, 'index'])->name('comment');
+    Route::get('/{commentId}/edit', [CommentController::class, 'editForm'])->name('comment.edit');
+    Route::post('/', [CommentController::class, 'store'])->name('comment.store');
+    Route::delete('/', [CommentController::class, 'destroy'])->name('comment.destroy');
+    Route::patch('/', [CommentController::class, 'update'])->name('comment.update');
 });

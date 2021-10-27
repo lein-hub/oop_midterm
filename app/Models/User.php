@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Subject::class, 'subject_user');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

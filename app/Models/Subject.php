@@ -14,4 +14,9 @@ class Subject extends Model
     {
         return $this->belongsToMany(User::class, 'subject_user');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

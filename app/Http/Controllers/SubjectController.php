@@ -37,7 +37,7 @@ class SubjectController extends Controller
 
     public function show($subjectId)
     {
-        $subject = Subject::where('id', $subjectId)->with('users')->get()[0];
+        $subject = Subject::where('id', $subjectId)->with(['users', 'comments'])->get()[0];
 
         return Inertia::render('Subject/SubjectShow', [
             'subject' => $subject
